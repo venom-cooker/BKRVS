@@ -24,4 +24,5 @@ $(function () {
   $(window).on("resize", function () {
     topH = $top.outerHeight();
   });
+  console.log(topH);
 });
