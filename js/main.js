@@ -1,17 +1,28 @@
 $(function () {
-  const header = $(".header");
-  const scrollOffset = 100; 
+  const $header = $(".header");
+  const $top = $(".article");
+  let topH = $top.outerHeight();
+  let ticking = false;
 
-  function checkScroll() {
-    let scrollPos = $(window).scrollTop();
-
-    if (scrollPos > scrollOffset) {
-      header.addClass("fixed");
+  function updateHeader() {
+    const scrollPos = window.scrollY;
+    if (scrollPos > topH) {
+      $header.addClass("fixed");
     } else {
-      header.removeClass("fixed");
+      $header.removeClass("fixed");
     }
+    ticking = false;
   }
 
-  checkScroll();
-  $(window).on("scroll resize", checkScroll);
+  $(window).on("scroll", function () {
+    if (!ticking) {
+      requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  });
+
+  // перераховуємо висоту блоку при зміні розміру вікна
+  $(window).on("resize", function () {
+    topH = $top.outerHeight();
+  });
 });
