@@ -11,6 +11,7 @@ $(function () {
     } else {
       $header.removeClass("fixed");
     }
+    console.log(scrollPos); // лог тут, де змінна існує
     ticking = false;
   }
 
@@ -24,5 +25,4 @@ $(function () {
   $(window).on("resize", function () {
     topH = $top.outerHeight();
   });
-  console.log(scrollPos);
 });
